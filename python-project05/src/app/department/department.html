@@ -1,0 +1,89 @@
+<div class="min-vh-100 py-4 px-3 page-bg">
+  <div class="mx-auto" style="max-width: 520px">
+
+    <div class="d-flex align-items-center gap-3 mb-4">
+      <button class="btn btn-outline-light btn-sm" (click)="goBack()">&#8592; Back</button>
+      <h1 class="h4 text-white fw-bold mb-0">{{ title }}</h1>
+    </div>
+
+    <div class="card shadow">
+      <div class="card-body p-4">
+
+        @if (errorMessage) {
+          <div class="alert alert-danger">{{ errorMessage }}</div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">
+              Name <span class="text-danger">*</span>
+            </label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Enter department name"
+              class="form-control"
+              [class.is-invalid]="form.get('name')!.invalid && form.get('name')!.touched"
+            />
+            @if (form.get('name')!.invalid && form.get('name')!.touched) {
+              <div class="invalid-feedback">Name is required.</div>
+            }
+            @if (errors['name']) {
+              <div class="text-danger small mt-1">{{ errors['name'] }}</div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="code" class="form-label fw-semibold">Code</label>
+            <textarea
+              id="code"
+              formControlName="code"
+              rows="3"
+              placeholder="Enter department code"
+              class="form-control"
+              [class.is-invalid]="form.get('code')!.invalid && form.get('code')!.touched"
+            ></textarea>
+            @if (form.get('code')!.invalid && form.get('code')!.touched) {
+              <div class="invalid-feedback">Code is required.</div>
+            }
+            @if (errors['code']) {
+              <div class="text-danger small mt-1">{{ errors['code'] }}</div>
+            }
+          </div>
+           <div class="mb-3">
+              <label for="college_ID" class="form-label fw-semibold">College <span class="text-danger">*</span></label>
+              <select id="college_ID" formControlName="college_ID" class="form-select"
+                [class.is-invalid]="form.get('college_ID')!.invalid && form.get('college_ID')!.touched">
+                <option value="">— Select a college —</option>
+                @for (college of preloadData?.colleges; track college.id) {
+                  <option [value]="college.id">{{ college.value }}</option>
+                }
+              </select>
+              @if (form.get('college_ID')!.invalid && form.get('college_ID')!.touched) {
+                <div class="invalid-feedback">College is required.</div>
+              }
+              @if (errors['college_ID']) { <div class="text-danger small mt-1">{{ errors['college_ID'] }}</div> }
+            </div>
+
+          <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success" [disabled]="saving || deleting">
+              <i class="bi bi-floppy"></i> {{ saving ? 'Saving…' : 'Save' }}
+            </button>
+            @if (isEditMode) {
+              <button type="button" class="btn btn-danger" (click)="onDelete()" [disabled]="saving || deleting">
+                <i class="bi bi-trash"></i> {{ deleting ? 'Deleting…' : 'Delete' }}
+              </button>
+            }
+            <button type="button" class="btn btn-secondary" (click)="goBack()" [disabled]="saving || deleting">
+              <i class="bi bi-x-circle"></i> Cancel
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
