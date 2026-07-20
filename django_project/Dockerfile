@@ -5,16 +5,19 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    pkg-config \
-    libmariadb-dev \
-    libmariadb-dev-compat \
-    libcairo2-dev \
-    libpango1.0-dev \
-    libgdk-pixbuf-xlib-2.0-dev \
-    shared-mime-info \
-    && rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/* && \
+    apt-get clean && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        gcc \
+        pkg-config \
+        libmariadb-dev \
+        libmariadb-dev-compat \
+        libcairo2-dev \
+        libpango1.0-dev \
+        libgdk-pixbuf-xlib-2.0-dev \
+        shared-mime-info && \
+    rm -rf /var/lib/apt/lists/*
 
 # 👇 Better caching
 COPY requirements.txt /app/
