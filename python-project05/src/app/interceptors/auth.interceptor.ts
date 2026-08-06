@@ -20,7 +20,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       catchError((err) => {
         console.log('Error Status:', err.status);
         console.log(err);
-        if (err.status === 0 || err.status === 500) {
+        if (err.status === 500) {
           serverStatus.setServerDown(true);
         }
         if (err.status === 401 && authService.getRefreshToken()) {
@@ -56,7 +56,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err) => {
       console.log('Error Status:', err.status);
       console.log(err);
-      if (err.status === 0 || err.status === 500) {
+      if (err.status === 500) {
         serverStatus.setServerDown(true);
       }
       if (err.status === 401 && authService.getRefreshToken()) {
