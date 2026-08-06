@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar';
+import { ServerStatusServices } from './services/server-status.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,8 @@ import { NavbarComponent } from './navbar/navbar';
 })
 export class App {
   protected readonly title = signal('ors');
+  serverStatus = inject(ServerStatusServices);
+   reload() {
+    window.location.reload();
+  }
 }

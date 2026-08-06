@@ -24,6 +24,11 @@ import { TimeTableListComponent } from './timetable-list/timetable-list';
 import { TimeTableComponent } from './timetable/timetable';
 import { DepartmentComponent } from './department/department';
 import { DepartmentListComponent } from './department-list/department-list';
+import { AppointmentComponent } from './appointment/appointment';
+import { Appointmentlist } from './appointmentlist/appointmentlist';
+import { FacultymComponent } from './facultym/mfaculty';
+import { FacultymlistComponent } from './facultymlist/mfacultylist';
+import { ScholarshipComponent } from './scholarship/scholarship';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -61,5 +66,14 @@ export const routes: Routes = [
   { path: 'departments', component: DepartmentListComponent },
   { path: 'department/new', component: DepartmentComponent },
   { path: 'department/:id', component: DepartmentComponent },
+  { path: 'appointments', component: Appointmentlist },
+  { path: 'appointment/new', component: AppointmentComponent },
+  { path: 'appointment/:id', component: AppointmentComponent },
+   { path: 'facultyms', component: FacultymlistComponent },
+  { path: 'facultym/new', component: FacultymComponent },
+  { path: 'facultym/:id', component: FacultymComponent },
+  { path: 'scholarships', component: ScholarshipComponent },
+  { path: 'scholarship/new', component: ScholarshipComponent },
+  { path: 'scholarship/:id', component: ScholarshipComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

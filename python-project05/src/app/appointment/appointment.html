@@ -1,0 +1,65 @@
+<div class="min-vh-100 py-4 px-3 page-bg">
+    <div class="mx-auto" style="max-width: 640px;">
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <button class="btn btn-outline-light btn-sm" (click)="goBack()">&#8592; Back</button>
+            <h1 class="h4 text-white fw-bold mb-0"> {{title}}</h1>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-body p-4">
+                 <form [formGroup]="form" (ngSubmit)="onSave()">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Patient Name<span class="text-danger">*</span></label>
+                        <input type="text" formControlName="patientName" class="form-control" />
+                    </div>
+
+                     <div class="mb-3">
+            <label class="form-label fw-semibold">Department <span class="text-danger">*</span></label>
+            <select formControlName="department_ID" class="form-select" (change)="onDepartmentChange($event)">
+              <option value="">— Select department —</option>
+              @for (d of preloadData?.departments; track d.id) {
+                <option [value]="d.id">{{ d.value }}</option>
+              }
+            </select>
+          </div>
+                    <div class="row g-3 mb-3">
+            <div class="col">
+              <label class="form-label fw-semibold">Date <span class="text-danger">*</span></label>
+              <input type="date" formControlName="appointmentDate" class="form-control" />
+            </div>
+            <div class="col">
+              <label class="form-label fw-semibold">Time <span class="text-danger">*</span></label>
+              <input type="time" formControlName="appointmentTime" class="form-control" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Reason</label>
+            <textarea formControlName="reason" class="form-control"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Mobile Number <span class="text-danger">*</span></label>
+            <input type="tel" formControlName="mobileNumber" class="form-control" />
+          </div>
+
+           <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-success" [disabled]="saving || deleting">
+              <i class="bi bi-floppy"></i> {{ saving ? 'Saving…' : 'Save' }}
+            </button>
+            @if (isEditMode) {
+              <button type="button" class="btn btn-danger" (click)="onDelete()" [disabled]="saving || deleting">
+                <i class="bi bi-trash"></i> {{ deleting ? 'Deleting…' : 'Delete' }}
+              </button>
+            }
+            <button type="button" class="btn btn-secondary" (click)="goBack()" [disabled]="saving || deleting">
+              <i class="bi bi-x-circle"></i> Cancel
+            </button>
+          </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

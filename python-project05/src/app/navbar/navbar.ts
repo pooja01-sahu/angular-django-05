@@ -13,9 +13,11 @@ import { ORSAPI } from '../services/orsapi.config';
   styleUrl: './navbar.css'
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  isLoginPage = false;
+  isPublicPage = false;
   logoError = false;
   private routerSub!: Subscription;
+
+  private publicRoutes = ['/login', '/register', '/forget-password', ''];
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -31,7 +33,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private checkRoute(url: string): void {
-    this.isLoginPage = url === '/login' || url === '/' || url === '';
+    this.isPublicPage = this.publicRoutes.some(route => url === route || url.startsWith('/register') || url.startsWith('/login')|| url.startsWith('/forget-password'));
   }
 
   onLogoError(): void {
@@ -65,5 +67,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       return '';
     }
   }
+
+  get showNavbar(): boolean {
+    return !this.isPublicPage
+  }
+
 
 }

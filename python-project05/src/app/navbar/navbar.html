@@ -1,26 +1,31 @@
-@if (!isLoginPage) {
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    @if (showNavbar) {
     <div class="container-fluid">
         <a class="navbar-brand" routerLink="/welcome">
-        @if (!logoError) {
-          <img src="logo.png" alt="ORS" class="ors-nav-logo" (error)="onLogoError()">
-        } @else {
-          <span class="fw-bold">ORS</span>
-        }
-      </a>
+            @if (!logoError) {
+            <img src="logo.png" alt="ORS" class="ors-nav-logo" (error)="onLogoError()">
+            } @else {
+            <span class="fw-bold">ORS</span>
+            }
+        </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+            aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <!-- Administration -->
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Administration
-            </a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Administration
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/user/new">New User</a></li>
                         <li><a class="dropdown-item" routerLink="/users">User List</a></li>
@@ -34,9 +39,10 @@
 
                 <!-- Institution -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Institution
-            </a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Institution
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/college/new">New College</a></li>
                         <li><a class="dropdown-item" routerLink="/colleges">College List</a></li>
@@ -55,9 +61,10 @@
 
                 <!-- People -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              People
-            </a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        People
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/faculty/new">New Faculty</a></li>
                         <li><a class="dropdown-item" routerLink="/faculty">Faculty List</a></li>
@@ -71,9 +78,10 @@
 
                 <!-- Academics -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Academics
-            </a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Academics
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" routerLink="/marksheet/new">New Marksheet</a></li>
                         <li><a class="dropdown-item" routerLink="/marksheets">Marksheet List</a></li>
@@ -82,11 +90,28 @@
                         </li>
                         <li><a class="dropdown-item" routerLink="/timetable/new">New Timetable</a></li>
                         <li><a class="dropdown-item" routerLink="/timetables">Timetable List</a></li>
-                         <li>
+                        <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" routerLink="/department/new">New Department</a></li>
                         <li><a class="dropdown-item" routerLink="/departments">Department List</a></li>
+                    </ul>
+                </li>
+
+                <!-- Moduls -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Module
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/appointment/new">New appointment</a></li>
+                        <li><a class="dropdown-item" routerLink="/appointments">appointment List</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/facultym/new">New Facultym</a></li>
+                        <li><a class="dropdown-item" routerLink="/facultyms">Facultym List</a></li>
                     </ul>
                 </li>
 
@@ -96,11 +121,13 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         @if (userPhoto) {
-                            <img [src]="userPhoto" alt="photo" style="width:32px;height:32px;object-fit:cover;border-radius:50%;border:2px solid rgba(255,255,255,0.4);">
+                        <img [src]="userPhoto" alt="photo"
+                            style="width:32px;height:32px;object-fit:cover;border-radius:50%;border:2px solid rgba(255,255,255,0.4);">
                         } @else {
-                            <i class="bi bi-person-circle"></i>
+                        <i class="bi bi-person-circle"></i>
                         }
                         {{ userName }}
                     </a>
@@ -109,7 +136,8 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" routerLink="/change-password"><i class="bi bi-key me-1"></i>Change Password</a></li>
+                        <li><a class="dropdown-item" routerLink="/change-password"><i class="bi bi-key me-1"></i>Change
+                                Password</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -121,7 +149,9 @@
                     </ul>
                 </li>
             </ul>
+
         </div>
+
     </div>
+    }
 </nav>
-}

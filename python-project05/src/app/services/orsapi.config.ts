@@ -18,6 +18,9 @@ export interface ORSAPIConfig {
   COLLEGE_SEARCH_API: string;
   UPLOAD_PHOTO_API: string;
   DEPARTMENT_API: string;
+  APPOINTMENT_API: string;
+  Facultym_API: string;
+  SCHOLARSHIP_API: string
 }
 
 const BASE = 'http://127.0.0.1:8000';
@@ -46,5 +49,8 @@ export const ORSAPI: ORSAPIConfig = {
   FACULTY_API: `${BASE}${CONTEXT}/Faculty/`,
   MARKSHEET_API: `${BASE}${CONTEXT}/Marksheet/`,
   TIMETABLE_API: `${BASE}${CONTEXT}/TimeTable/`,
-  DEPARTMENT_API: `${BASE}${CONTEXT}/Department/`
+  DEPARTMENT_API: `${BASE}${CONTEXT}/Department/`,
+  APPOINTMENT_API: `${BASE}${CONTEXT}/Appointment/`,
+  Facultym_API: `${BASE}${CONTEXT}/Facultym/`,
+  SCHOLARSHIP_API: `${BASE}${CONTEXT}/Scholarship`
 };

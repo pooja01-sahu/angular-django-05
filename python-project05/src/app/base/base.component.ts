@@ -118,16 +118,18 @@ export abstract class BaseComponent implements OnInit {
     if (!this.initEditMode()) return;
     const state = history.state;
     if (state?.['id']) {
+      console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhh', state)
       this.populateForm(state);
     } else {
-
+      console.log('kkkkkkkkkkkkkkkkkkkkkkk')
       this.loading = true;
 
       this.getService().getById(
         this.entityId!,
-        (data) => {
+        (data: any) => {
+          console.log('jjjjjjjjjjjjjjjjjj', data)
           this.loading = false;
-          this.populateForm(data);
+          this.populateForm(data.data);
           this.cdr.markForCheck();
         },
         (err) => {
@@ -169,6 +171,7 @@ export abstract class BaseComponent implements OnInit {
     this.errorMessage = '';
     const body = this.getBody();
     if (this.isEditMode && this.entityId) {
+      console.log("body data", body)
       this.getService().update(this.entityId, body,
         () => this.goBack(),
         (err) => this.handleSaveError(err)
@@ -196,7 +199,7 @@ export abstract class BaseComponent implements OnInit {
   protected handleSaveError(err: any): void {
     this.saving = false;
     this.errorMessage = err?.status === 0 ? 'Server Error' : (err?.error?.message || 'Save failed. Please try again.');
-    this.errors =  (err?.error?.errors || {});
+    this.errors = (err?.error?.errors || {});
     this.cdr.markForCheck();
   }
 

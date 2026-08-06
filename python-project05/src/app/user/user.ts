@@ -87,7 +87,7 @@ export class UserComponent extends BaseComponent {
     this.userService.uploadPhoto(this.entityId, file,
       (res: any) => {
         this.photoUploading = false;
-        const filename = res?.photo ?? res?.filename ?? '';
+        const filename = res?.data?.photo ?? res?.filename ?? '';
         if (filename) {
           this.form.patchValue({ photo: filename });
           this.photoPreview = `${this.baseUrl}/media/${filename}`;
@@ -103,6 +103,7 @@ export class UserComponent extends BaseComponent {
 
   protected override getBody(): User {
     const v = this.form.value;
+    console.log("get body",v)
     const body: User = {
       id: this.entityId ?? 0,
       firstName: v.firstName,

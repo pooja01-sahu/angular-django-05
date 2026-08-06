@@ -1,2 +1,26 @@
 <app-navbar />
+@if(serverStatus.serverDown()){
+
+<div class="server-overlay">
+
+    <div class="server-modal">
+
+        <h2>⚠ Server is Down</h2>
+
+        <p>
+            Unable to connect to the server.
+            Please try again after some time.
+        </p>
+
+        <button class="btn btn-danger" (click)="reload()">
+
+            Retry
+
+        </button>
+
+    </div>
+
+</div>
+
+}
 <router-outlet />

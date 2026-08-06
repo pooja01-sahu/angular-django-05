@@ -194,3 +194,31 @@ class Department(DropdownItem):
 
     class Meta:
         db_table = "SOS_DEPARTMENT"
+
+class Appointment(DropdownItem):
+    patientName = models.CharField(max_length=100)
+    department_ID = models.IntegerField(blank=True, default=0)
+    departmentName = models.CharField(max_length=100, blank=True)
+    appointmentDate = models.DateField(null=True, blank=True)
+    appointmentTime = models.CharField(max_length=50)
+    reason = models.CharField(max_length=500, blank=True)
+    mobileNumber = models.CharField(max_length=15)
+    status = models.CharField(max_length=20, default="Pending")
+
+    def get_value(self):
+        return f"{self.patientName}"
+
+    class Meta:
+        db_table = "SOS_APPOINTMENT"
+
+class FacultyModule(DropdownItem):
+    facultyName = models.CharField(max_length=50)
+    subject =  models.CharField(max_length=50)
+    qualification = models.CharField(max_length=50)
+    experience = models.IntegerField()
+
+    def get_value(self):
+        return f"{self.facultyName}"
+
+    class Meta:
+        db_table = "sos_facultymodule"
