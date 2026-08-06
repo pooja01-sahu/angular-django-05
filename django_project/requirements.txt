@@ -5,3 +5,4 @@ mysqlclient==2.2.7
 PyJWT>=2.8
 djangorestframework-simplejwt
 xhtml2pdf
+xlwt
