@@ -45,7 +45,8 @@ export class DepartmentComponent extends BaseComponent {
   protected override populateForm(data: any): void {
     this.form.patchValue({
       name: data.name,
-      code: data.code
+      code: data.code,
+      college_ID: data.college_ID, collegeName: data.collegeName
     });
   }
 
